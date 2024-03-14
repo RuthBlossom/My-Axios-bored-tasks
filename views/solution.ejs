@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="public/styles/main.css">
+  <title>I'm Bored</title>
+</head>
+
+<body>
+<!-- Container for the entire content -->
+<div class="container">
+  <!-- Heading -->
+  <h1>Let's find something for you to do ✌️</h1>
+
+  <!-- Form for submitting criteria -->
+  <form action="/" id="form" class="form" method="POST">
+    <!-- Dropdown for activity type -->
+    <select name="type" class="form-select">
+      <option value="" data-display="Select">Random type</option>
+      <option value="education">Education</option>
+      <option value="charity">Charity</option>
+      <!-- ... and other options ... -->
+    </select>
+    <!-- Dropdown for number of participants -->
+    <select name="participants" class="form-select">
+      <option value="">Any number of people</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <!-- ... and other options ... -->
+    </select>
+    <!-- Submit button -->
+    <button type="submit" class="form-submit">Go</button>
+  </form>
+
+  <!-- Section to display activity cards or error message -->
+  <section id="cards" class="cards">
+    <% if (locals.data) { %>
+      <!-- Display activity details if data is available -->
+      <article class="card-item">
+        <h2 class="card-activity">
+          <%= data.activity %>
+        </h2>
+        <div class="card-info">
+            <span class="card-type">
+              <%= data.type %>
+            </span>
+          <span class="card-participants">
+              participants: <%= data.participants %>
+              <span class="card-number"></span>
+            </span>
+        </div>
+      </article>
+    <% } %>
+
+    <% if (locals.error) { %>
+      <!-- Display error message if an error occurred -->
+      <div id="tag-error" class="tag-error">
+        <%= error %>
+      </div>
+    <% } %>
+  </section>
+</div>
+</body>
+
+</html>
+ <!--Form: This form is used to submit criteria for the type of activity to find. It includes two select dropdowns & a submit button. The form sends a POST request to the server's root URL ("/").
+
+The first select element is for selecting the type of activity.
+The second select element is for selecting the number of participants.
+The submit button triggers the form submission.
+Section for Cards: This section is used to display the activity information or error message.-->
+
+<!--<%#The <% if (locals.data) { %> block checks if there is data to display (activity information). It renders an article element with details about the activity.
+The h2 element displays the activity name.
+The span elements display the activity type & number of participants.
+The <%# if (locals.error) { %> block checks if there's an error message. It renders a div with the error message.
+Closing Tags: These tags close the various HTML elements that were opened earlier.
+
+The EJS syntax, such as <%# data.activity %>, is used to dynamically inject values from the server's response into the HTML content. The server passes data to this template when rendering it, & the template uses this data to display the appropriate content on the web page. block checks if there is data to display (activity information). It renders an article element with details about the activity.
+The h2 element displays the activity name.
+The span elements display the activity type & number of participants.
+The "<%# if (locals.error) { %> block checks if there's an error message. It renders a div with the error message.
+Closing Tags: These tags close the various HTML elements that were opened earlier.
+
+The EJS syntax, such as <%# data.activity %>, is used to dynamically inject values from the server's response into the HTML content. The server passes data to this template when rendering it, and the template uses this data to display the appropriate content on the web page.  %> -->
